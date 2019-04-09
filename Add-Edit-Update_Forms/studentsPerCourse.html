@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+            table tr:not(:first-child) {
+                cursor: pointer;
+                transition: all .25s ease-in-out;
+            }
+    
+            table tr:not(:first-child):hover {
+                background-color: lightcyan;
+            }
+        </style>
+    <link rel="stylesheet" type="text/css" href="studentsPerCourse.css">
+    <title>Add/Edit/Update studentsPerCourse</title>
+</head>
+
+<body>
+
+    <table id="table" border="1">
+        <caption>Students per Course</caption>
+        <tr>
+            <th>fullName</th>
+            <th>course</th>
+        </tr>
+        <tr>
+            <td>Harry Potter</td>
+            <td>Defence against the dark arts</td>
+        </tr>
+        <tr>
+            <td>Hermione Granger</td>
+            <td>Defence against the dark arts</td>
+        </tr>
+        <tr>
+            <td>Ron Weasly</td>
+            <td>Defence against the dark arts</td>
+        </tr>
+        <tr>
+            <td>Luna Lovegood</td>
+            <td>Defence against the dark arts</td>
+        </tr>
+        <tr>
+            <td>Harry Potter</td>
+            <td>Potions</td>
+        </tr>
+        <tr>
+            <td>Hermione Granger</td>
+            <td>Potions</td>
+        </tr>
+        <tr>
+            <td>Luna Lovegood</td>
+            <td>Potions</td>
+        </tr>
+        <tr>
+            <td>Harry Potter</td>
+            <td>Transfiguration</td>
+        </tr>
+        <tr>
+            <td>Hermione Granger</td>
+            <td>Transfiguration</td>
+        </tr>
+        <tr>
+            <td>Ron Weasly</td>
+            <td>Transfiguration</td>
+        </tr>
+        <tr>
+            <td>Tom Riddle</td>
+            <td>Transfiguration</td>
+        </tr>
+        </table>
+
+        <p><strong>Hello user! If you want to Edit / Update a row, click on it and set the values</strong></p>
+        <p><strong>If you want to Add a new row, set new values at the fields and press 'Add row'</strong></p>
+    
+        fullName:<input type="text" name="fullName" id="fullName" size="45"><br><br>
+        course:<input type="text" name="course" id="course" size="45"><br><br>
+        
+        <button type="submit" onclick="editRow();">Edit / Update Row</button><br><br>
+        <button type="submit" onclick="addRow();">Add Row</button>
+    
+    
+        <script>
+    
+            var table = document.getElementById("table"), rIndex;
+    
+            for (var i = 1; i < table.rows.length; i++) {
+                table.rows[i].onclick = function () {
+                    rIndex = this.rowIndex;
+                    console.log(rIndex);
+    
+                    document.getElementById("fullName").value = this.cells[0].innerHTML;
+                    document.getElementById("course").value = this.cells[1].innerHTML;
+                    
+                };
+            }
+    
+    
+            function editRow() {
+                table.rows[rIndex].cells[0].innerHTML = document.getElementById("fullName").value;
+                table.rows[rIndex].cells[1].innerHTML = document.getElementById("course").value;
+    
+                
+            }
+    
+        </script>
+    
+        <script>
+    
+            function addRow() {
+    
+                var fullName = document.getElementById("fullName").value;
+                var course = document.getElementById("course").value;
+    
+                var table = document.getElementsByTagName('table')[0];
+    
+    
+                var newRow = table.insertRow(table.rows.length / 2 + 1);
+    
+    
+                var cel1 = newRow.insertCell(0);
+                var cel2 = newRow.insertCell(1);
+            
+    
+               
+    
+    
+                cel1.innerHTML = fullName;
+                cel2.innerHTML = course;
+               
+    
+                
+            }
+    
+        </script>
+    
+    </body>
+    
+    </html>
+    
+    
+    </body>
+    
+    </html>

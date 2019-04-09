@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        table tr:not(:first-child) {
+            cursor: pointer;
+            transition: all .25s ease-in-out;
+        }
+
+        table tr:not(:first-child):hover {
+            background-color: lightcyan;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="courses.css">
+    <title>Add/Edit/Update Courses</title>
+</head>
+
+<body>
+
+    <table id="table" border="1">
+
+        <caption>Courses</caption>
+        <tr>
+            <th>id</th>
+            <th>title</th>
+            <th>stream</th>
+            <th>type</th>
+            <th>start date</th>
+            <th>end date</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Defence against the dark arts</td>
+            <td>Dark magic</td>
+            <td>Defensive</td>
+            <td>2019-03-25 09:00:00</td>
+            <td>2019-07-28 15:00:00</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Potions</td>
+            <td>Craft</td>
+            <td>Miscellaneous</td>
+            <td>2019-03-25 09:00:00</td>
+            <td>2019-07-28 15:00:00</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Transfiguration</td>
+            <td>Neutral magic</td>
+            <td>Animagus</td>
+            <td>2019-03-25 09:00:00</td>
+            <td>2019-07-28 15:00:00</td>
+        </tr>
+    </table><br>
+
+    <p><strong>Hello user! If you want to Edit / Update a row, click on it and set the values</strong></p>
+    <p><strong>If you want to Add a new row, set new values at the fields and press 'Add row'</strong></p>
+
+    id:<input type="number" name="id" id="id" min="1" max="100" required>
+    title:<input type="text" name="title" id="title" size="45" ><br><br>
+    stream:<input type="text" name="stream" id="stream" size="45">
+    type:<input type="text" name="type" id="type" size="45"><br><br>
+    start date:<input type="datetime" name="start date" id="start date">
+    end date:<input type="datetime" name="end date" id="end date"><br><br>
+
+    <button type="submit" onclick="editRow();">Edit / Update Row</button><br><br>
+    <button type="submit" onclick="addRow();">Add Row</button>
+
+
+    <script>
+
+        var table = document.getElementById("table"), rIndex;
+
+        for (var i = 1; i < table.rows.length; i++) {
+            table.rows[i].onclick = function () {
+                rIndex = this.rowIndex;
+                console.log(rIndex);
+
+                document.getElementById("id").value = this.cells[0].innerHTML;
+                document.getElementById("title").value = this.cells[1].innerHTML;
+                document.getElementById("stream").value = this.cells[2].innerHTML;
+                document.getElementById("type").value = this.cells[3].innerHTML;
+                document.getElementById("start date").value = this.cells[4].innerHTML;
+                document.getElementById("end date").value = this.cells[5].innerHTML;
+            };
+        }
+
+
+        function editRow() {
+            table.rows[rIndex].cells[0].innerHTML = document.getElementById("id").value;
+            table.rows[rIndex].cells[1].innerHTML = document.getElementById("title").value;
+            table.rows[rIndex].cells[2].innerHTML = document.getElementById("stream").value;
+            table.rows[rIndex].cells[3].innerHTML = document.getElementById("type").value;
+            table.rows[rIndex].cells[4].innerHTML = document.getElementById("start date").value;
+            table.rows[rIndex].cells[5].innerHTML = document.getElementById("end date").value;
+        }
+
+    </script>
+
+    <script>
+
+        function addRow() {
+
+            var id = document.getElementById("id").value;
+            var title = document.getElementById("title").value;
+            var stream = document.getElementById("stream").value;
+            var type = document.getElementById("type").value;
+            var startDate = document.getElementById("start date").value;
+            var endDate = document.getElementById("end date").value;
+
+
+            var table = document.getElementsByTagName('table')[0];
+
+
+            var newRow = table.insertRow(table.rows.length / 2 + 1);
+
+
+            var cel1 = newRow.insertCell(0);
+            var cel2 = newRow.insertCell(1);
+            var cel3 = newRow.insertCell(2);
+            var cel4 = newRow.insertCell(3);
+            var cel5 = newRow.insertCell(4);
+            var cel6 = newRow.insertCell(5);
+
+
+            cel1.innerHTML = id;
+            cel2.innerHTML = title;
+            cel3.innerHTML = stream;
+            cel4.innerHTML = type;
+            cel5.innerHTML = startDate;
+            cel6.innerHTML = endDate;
+        }
+
+    </script>
+
+</body>
+
+</html>
+
+
+</body>
+
+</html>

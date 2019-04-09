@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+            table tr:not(:first-child) {
+                cursor: pointer;
+                transition: all .25s ease-in-out;
+            }
+    
+            table tr:not(:first-child):hover {
+                background-color: lightcyan;
+            }
+        </style>
+    <link rel="stylesheet" type="text/css" href="trainers.css">
+    <title>Add/Edit/Update Trainers</title>
+</head>
+<body>
+
+    <table id="table" border="1">
+        <caption>Trainers</caption>
+        <tr>
+            <th>id</th>
+            <th>fName</th>
+            <th>lName</th>
+            <th>Subject</th>
+            
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Albus</td>
+            <td>Dumbledore</td>
+            <td>Defence against the dark arts</td>
+            
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Severus</td>
+            <td>Snape</td>
+            <td>Potions</td>
+            
+        </tr>
+        <tr>
+                <td>3</td>
+                <td>Minerva</td>
+                <td>McGonagall</td>
+                <td>Transfiguration</td>
+               
+            </tr>
+    </table>
+    
+    <p><strong>Hello user! If you want to Edit / Update a row, click on it and set the values</strong></p>
+    <p><strong>If you want to Add a new row, set new values at the fields and press 'Add row'</strong></p>
+
+    id:<input type="number" name="id" id="id" min="1" max="100" required><br><br>
+    fName:<input type="text" name="fName" id="fName" size="45"><br><br>
+    lName:<input type="text" name="lName" id="lName" size="45"><br><br>
+    subject:<input type="text" name="subject" id="subject" size="45"><br><br>
+    
+    <button type="submit" onclick="editRow();">Edit / Update Row</button><br><br>
+    <button type="submit" onclick="addRow();">Add Row</button>
+
+
+    <script>
+
+        var table = document.getElementById("table"), rIndex;
+
+        for (var i = 1; i < table.rows.length; i++) {
+            table.rows[i].onclick = function () {
+                rIndex = this.rowIndex;
+                console.log(rIndex);
+
+                document.getElementById("id").value = this.cells[0].innerHTML;
+                document.getElementById("fName").value = this.cells[1].innerHTML;
+                document.getElementById("lName").value = this.cells[2].innerHTML;
+                document.getElementById("subject").value = this.cells[3].innerHTML;
+                
+            };
+        }
+
+
+        function editRow() {
+            table.rows[rIndex].cells[0].innerHTML = document.getElementById("id").value;
+            table.rows[rIndex].cells[1].innerHTML = document.getElementById("fName").value;
+            table.rows[rIndex].cells[2].innerHTML = document.getElementById("lName").value;
+            table.rows[rIndex].cells[3].innerHTML = document.getElementById("subject").value;
+            
+        }
+
+    </script>
+
+    <script>
+
+        function addRow() {
+
+            var id = document.getElementById("id").value;
+            var fName = document.getElementById("fName").value;
+            var lName = document.getElementById("lName").value;
+            var subject = document.getElementById("subject").value;
+            
+
+            var table = document.getElementsByTagName('table')[0];
+
+
+            var newRow = table.insertRow(table.rows.length / 2 + 1);
+
+
+            var cel1 = newRow.insertCell(0);
+            var cel2 = newRow.insertCell(1);
+            var cel3 = newRow.insertCell(2);
+            var cel4 = newRow.insertCell(3);
+           
+
+
+            cel1.innerHTML = id;
+            cel2.innerHTML = fName;
+            cel3.innerHTML = lName;
+            cel4.innerHTML = subject;
+            
+        }
+
+    </script>
+
+</body>
+
+</html>
+
+
+</body>
+
+</html>
